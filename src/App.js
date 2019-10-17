@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Grid, Paper, makeStyles, Link, Button } from "@material-ui/core";
+import {Grid, Paper, makeStyles, Link } from "@material-ui/core";
 
 function App() {
   const [data, setData] = useState([]);
@@ -26,9 +26,6 @@ function App() {
        
       </header>
       <div style={{marginTop:'20px'}}>
-      <Button variant="contained" color="primary">
-      Hello World
-    </Button>
 
       {data.map(x => (
       <Grid container spacing={1}>
