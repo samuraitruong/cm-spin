@@ -17,6 +17,8 @@ function App() {
   }));
   const classes = useStyles();
   useEffect(() => {
+    if(data.length > 0) return;
+
     fetch("https://cm-spin.herokuapp.com/").then(x =>x.json()).then(data => setData(data));
   });
   return (
