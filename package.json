@@ -5,6 +5,7 @@
   "homepage": "https://samuraitruong.github.io/cm-spin/",
   "dependencies": {
     "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
