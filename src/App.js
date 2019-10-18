@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import {Grid, Button, makeStyles, Link, Container} from "@material-ui/core";
+import {Grid, Button, makeStyles, Link, Container, Box} from "@material-ui/core";
 import Progress from "@material-ui/core/CircularProgress"
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -66,7 +66,7 @@ function App() {
       <Container className={classes.mainContent}>
       
 
-     { data.length ===0  && <Progress variant="indeterminate" spacing={20} container ></Progress>}
+     { data.length ===0 && <Box display="flex" alignItems="center" justifyContent="center" height ="75vmin"><Progress  variant="indeterminate" status="loading...." showLabels={true}></Progress></Box>}
       {data.map(x => (
       <Grid container spacing={0} className={classes.row}>
         <Grid item xs={5}>
@@ -75,7 +75,7 @@ function App() {
         <Grid item xs={3}>
           <Typography className={classes.paper}>{x.datetime}</Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} >
           <Link  component="a" variant="contained"  target="_blank" color="primary" href={x.url}>
           <Button spacing={2}
               variant="contained"
