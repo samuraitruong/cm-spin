@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import {Grid, Paper, makeStyles, Link} from "@material-ui/core";
+import {Grid, Button, makeStyles, Link, Container} from "@material-ui/core";
 import Progress from "@material-ui/core/CircularProgress"
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -8,16 +8,20 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import ArrowRight from '@material-ui/icons/ArrowRightAlt';
+import Divider from '@material-ui/core/Divider';
+// or
 function App() {
   const [data, setData] = useState([]);
   const [value, setValue] = useState([]);
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
+    },
+    mainContent: {
+      marginTop: theme.spacing(2)
     },
     paper: {
       padding: theme.spacing(1),
@@ -32,6 +36,9 @@ function App() {
     },
     marginTop: {
       marginTop: theme.spacing(2),
+    },
+    row: {
+      marginBottom: theme.spacing(1)
     }
   }));
   const classes = useStyles();
@@ -41,9 +48,8 @@ function App() {
     fetch("https://cm-spin.herokuapp.com/").then(x =>x.json()).then(data => setData(data));
   });
   return (
-    <div className="App">
-      <header className="App-header">
-      <AppBar position="static">
+    <Container className="App">
+      <AppBar position="static" container>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -57,27 +63,36 @@ function App() {
           }} ><RefreshIcon/></IconButton>
         </Toolbar>
       </AppBar>
-
-      </header>
-      <div style={{marginTop:'20px'}}>
+      <Container className={classes.mainContent}>
       
 
      { data.length ===0  && <Progress variant="indeterminate" spacing={20} container ></Progress>}
       {data.map(x => (
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>{x.name}</Paper>
+      <Grid container spacing={0} className={classes.row}>
+        <Grid item xs={5}>
+          <Typography className={classes.paper}>{x.name}</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>{x.datetime}</Paper>
+          <Typography className={classes.paper}>{x.datetime}</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Link  component="a" variant="contained"  target="_blank" color="primary" href={x.url}>
-            Collect
+          <Button spacing={2}
+              variant="contained"
+              color="primary"
+              size="small"
+              className={classes.button}
+              endIcon={<ArrowRight />}
+            >Collect</Button>
         </Link>
         </Grid>
+        <Grid xs={12} spacing={3}>
+        <Divider component="hr"></Divider>
+
+        </Grid>
       </Grid>))}
-      </div>
+      </Container>
+      <Divider component="hr"></Divider>
       {data.length >0 && ( <BottomNavigation className={classes.marginTop}
         value={value}
         onChange={(event, newValue) => {
@@ -89,7 +104,7 @@ function App() {
       >
         <BottomNavigationAction label="Refresh" icon={<RefreshIcon />} />
       </BottomNavigation>)}
-    </div>
+    </Container>
     
   );
 }
