@@ -75,7 +75,7 @@ function App() {
         <Grid item xs={3}>
           <Typography className={classes.paper}>{x.datetime}</Typography>
         </Grid>
-        <Grid item xs={4} >
+        <Grid item xs={4} style= {{textAlign: "right"}}  >
           <Link  component="a" variant="contained"  target="_blank" color="primary" href={x.url}>
           <Button spacing={2}
               variant="contained"
