@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Daily Spins",
+  "name": "Coin Master Daily Rewards",
   "icons": [
     {
       "src": "favicon.ico",
