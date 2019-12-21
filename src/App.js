@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ArrowRight from '@material-ui/icons/ArrowRightAlt';
 import Divider from '@material-ui/core/Divider';
 import CheckIcon from '@material-ui/icons/Check'
+import moment from "moment";
 // or
 function App() {
   const json = localStorage.getItem("COLLECTED") || "{}";
@@ -76,7 +77,7 @@ function App() {
           <Typography className={classes.paper}>{x.name}</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography className={classes.paper}>{x.datetime}</Typography>
+          <Typography className={classes.paper}>{moment(x.datetime, "DD-MM-YYYY").format("DD-MMM")}</Typography>
         </Grid>
         <Grid item xs={4} style= {{textAlign: "right"}}  >
           <Link component="a" 
@@ -96,7 +97,7 @@ function App() {
               className={classes.button}
               startIcon={collected[x.id]?<CheckIcon />: null}
               endIcon={!collected[x.id]?<ArrowRight />: null}
-            >Collect</Button>
+            >{collected[x.id]?"Collected": "Collect"}</Button>
         </Link>
         </Grid>
         <Grid xs={12} item>
