@@ -4,11 +4,20 @@ import * as cheerio from "cheerio";
 import * as fs from "fs";
 import * as path from "path";
 import * as puppeteer from "puppeteer";
+import * as crypto from "crypto";
 
 class Updater {
     session: any;
     cookies : string[];
     phpsession :string;
+    async createHashFromContent(content:string){
+        return new Promise(resolve => {
+        const hash = crypto.createHash('sha1');
+        hash.update(content);
+        resolve(hash.digest('hex'));
+      });
+    }
+
     async execute() {
         await this.getCookie();
         const list = await this.getList();
@@ -18,6 +27,24 @@ class Updater {
         const data = await Promise.all(promises);
         console.log("foudn location", list);
 
+        const json = JSON.stringify(data, null, 4);
+        const message = {
+                "message": "Update data file [ci skip]",
+                "committer": {
+                  "name": "Truong Nguyen`",
+                  "email": "samuraitruong@hotmail.com"
+                },
+                sha: await this.createHashFromContent(json),
+                "content": Buffer.from(json).toString("base64")
+        }
+        const dataFile =  await axios.get("https://api.github.com/repos/samuraitruong/cm-spin/contents/public/data.json");
+        message.sha = dataFile.data.sha;
+        const result = await axios.put("https://api.github.com/repos/samuraitruong/cm-spin/contents/public/data.json", message, {
+            headers: {
+                authorization: "token " + process.env.GH_TOKEN
+            }
+        });
+        console.log(result);
     }
     async getCookie() {
         try{

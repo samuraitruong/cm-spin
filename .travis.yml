@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - stable
+env:
+  - GH_TOKEN=$GH_TOKEN
 install:
   -  npm install
 script:
