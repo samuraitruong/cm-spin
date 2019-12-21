@@ -29,7 +29,7 @@ class Updater {
 
         const json = JSON.stringify(data, null, 4);
         const message = {
-                "message": `Update data file at ${new Date().toUTCString()}[ci skip]`,
+                "message": `Update data file at: ${new Date().toISOString()} - [ci skip]`,
                 "committer": {
                   "name": "Truong Nguyen`",
                   "email": "samuraitruong@hotmail.com"
