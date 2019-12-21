@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "target": "esnext",
+        "lib": ["esnext", "dom"],
+        "outDir": "bin"
+        
+    },
+    "exclude": [
+        "node_modules",
+        "src"
+    ]
+}
