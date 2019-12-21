@@ -29,7 +29,7 @@ class Updater {
 
         const json = JSON.stringify(data, null, 4);
         const message = {
-                "message": "Update data file [ci skip]",
+                "message": `Update data file at ${new Date().toUTCString()}[ci skip]`,
                 "committer": {
                   "name": "Truong Nguyen`",
                   "email": "samuraitruong@hotmail.com"
@@ -37,9 +37,10 @@ class Updater {
                 sha: await this.createHashFromContent(json),
                 "content": Buffer.from(json).toString("base64")
         }
-        const dataFile =  await axios.get("https://api.github.com/repos/samuraitruong/cm-spin/contents/public/data.json");
+        const fileUrl = "https://api.github.com/repos/samuraitruong/cm-spin/contents/public/data.json";
+        const dataFile =  await axios.get(fileUrl);
         message.sha = dataFile.data.sha;
-        const result = await axios.put("https://api.github.com/repos/samuraitruong/cm-spin/contents/public/data.json", message, {
+        const result = await axios.put(fileUrl, message, {
             headers: {
                 authorization: "token " + process.env.GH_TOKEN
             }
