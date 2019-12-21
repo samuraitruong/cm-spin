@@ -44,7 +44,7 @@ class Updater {
                 authorization: "token " + process.env.GH_TOKEN
             }
         });
-        console.log(result);
+        console.log(result.data);
     }
     async getCookie() {
         try{
