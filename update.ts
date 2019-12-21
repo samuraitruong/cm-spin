@@ -44,7 +44,7 @@ class Updater {
         const res = await axios.head(url, {withCredentials: true, 
             maxRedirects:0, 
             headers: {
-                "cookie": "PHPSESSID=64gcri0h9f6r3al7t7k0sn74s1;"
+                "cookie": this.session, //"PHPSESSID=64gcri0h9f6r3al7t7k0sn74s1;"
             },
             validateStatus: (status) => {
             return  status >= 200 && status < 300 || status === 302}
