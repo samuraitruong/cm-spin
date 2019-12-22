@@ -13,7 +13,7 @@ image: node:latest
 cache:
   paths:
     - node_modules/
-image: buildkite/puppeteer
+image: alekzonder/puppeteer:1.5.0-0
 generate_data:
   script:
     - npm install
