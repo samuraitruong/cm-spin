@@ -50,7 +50,9 @@ class Updater {
     async getCookie() {
         try{
             console.log("Open page in browser with puppeteer ....")
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            args: ["--headless", "--no-sandbox"] 
+        });
         const page = await browser.newPage();
         await page.goto('https://gamehunters.club/coin-master/share-links');
        // await page.screenshot({path: 'example.png'});
