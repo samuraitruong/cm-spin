@@ -16,6 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "update": "ts-node --project update.tsconfig.json update.ts",
+    "freespinandcoin.blogspot.com": "ts-node --project update.tsconfig.json freespinandcoin.ts",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "publish": "npm run build && npm run deploy"

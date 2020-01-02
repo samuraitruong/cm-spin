@@ -18,4 +18,5 @@ generate_data:
   script:
     - npm install
     - npm run update
+    - npm run freespinandcoin.blogspot.com
 
